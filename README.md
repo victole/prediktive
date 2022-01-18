@@ -18,7 +18,11 @@ In the first step the users group will be determined based on the Article page p
 
 The “Determine User Type To Be Notified” step uses the DetermineNotifiedUserTypeWorkflowProcess class which is in charge to “translate” the page properties definition to the workflow models.
 
-And the “Workflow Delegation” will be in charge to execute the desired workflow models.
+And the “Workflow Delegation” will be in charge to execute the desired workflow models. (WorkflowDelegationProcess.java)
+
+The main code is in
+core/src/main/java/com/victole/examples/core/services
+core/src/main/java/com/victole/examples/core/models
 
 AEM Component explanation
 -----------
