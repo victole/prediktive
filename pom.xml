@@ -34,8 +34,6 @@
         <module>ui.apps.structure</module>
         <module>ui.config</module>
         <module>ui.content</module>
-        <module>it.tests</module>
-        <module>dispatcher</module>
         <module>ui.tests</module>
     </modules>
 
@@ -660,7 +658,8 @@ Bundle-DocURL:
             <dependency>
                 <groupId>com.adobe.aem</groupId>
                 <artifactId>uber-jar</artifactId>
-                <version>6.5.0</version>
+                <version>6.5.1</version>
+                <classifier>apis</classifier>
                 <scope>provided</scope>
             </dependency>
             <!-- Apache Sling Dependencies -->
@@ -720,6 +719,13 @@ Bundle-DocURL:
                 <artifactId>core.wcm.components.config</artifactId>
                 <type>zip</type>
                 <version>${core.wcm.components.version}</version>
+            </dependency>
+            <!-- ACS Commons -->
+            <dependency>
+                <groupId>com.adobe.acs</groupId>
+                <artifactId>acs-aem-commons-bundle</artifactId>
+                <version>4.3.2</version>
+                <scope>provided</scope>
             </dependency>
 
 
