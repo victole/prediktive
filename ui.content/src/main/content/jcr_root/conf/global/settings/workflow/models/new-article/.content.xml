@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:designPath="/libs/settings/wcm/designs/default"
+        cq:lastModified="{Date}2021-05-12T11:51:18.409-03:00"
+        cq:lastModifiedBy="admin"
+        cq:template="/libs/cq/workflow/templates/model"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="New Article Notification"
+        sling:resourceType="cq/workflow/components/pages/model">
+        <flow
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <process
+                jcr:created="{Date}2021-05-10T16:19:08.407-03:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2021-05-11T11:04:41.251-03:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Determine User Type To Be Notified"
+                sling:resourceType="cq/workflow/components/model/process">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PROCESS="com.victole.examples.core.services.workflows.DetermineNotifiedUserTypeWorkflowProcess"
+                    PROCESS_AUTO_ADVANCE="true"/>
+            </process>
+            <process_1991253628
+                jcr:created="{Date}2021-05-11T09:19:13.635-03:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2021-05-12T11:51:18.387-03:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Workflow Delegation"
+                sling:resourceType="cq/workflow/components/model/process">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PROCESS="com.victole.examples.core.services.workflows.WorkflowDelegationProcess"
+                    PROCESS_AUTO_ADVANCE="true"/>
+            </process_1991253628>
+        </flow>
+    </jcr:content>
+</jcr:root>
