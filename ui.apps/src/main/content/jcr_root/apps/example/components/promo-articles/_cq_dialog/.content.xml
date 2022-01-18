@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Promo Articles Component"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <title
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="Title"
+                        required="{Boolean}false"
+                        name="./title"/>
+                    <tags
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                        fieldLabel="Tags to Filter"
+                        multiple="{Boolean}true"
+                        name="./cq:tags"/>
+                    <articleSearchPath
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                        fieldLabel="Articles Search Path"
+                        name="./articleSearchPath"
+                        rootPath="/content/websites"/>
+                    <sourceType
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="/libs/granite/ui/components/foundation/form/select"
+                            class="cq-dialog-dropdown-showhide"
+                            cq-dialog-dropdown-showhide-target=".manual-showhide-target"
+                            fieldLabel="Layout"
+                            name="./layout">
+                        <items jcr:primaryType="nt:unstructured">
+                            <viewMoreArticles
+                                    jcr:primaryType="nt:unstructured"
+                                    text="View More Articles"
+                                    value="viewMoreArticles"/>
+                            <loadMore
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Load More"
+                                    value="loadMore"/>
+                        </items>
+                    </sourceType>
+                    <viewMoreArticles
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/container"
+                            class="hide manual-showhide-target"
+                            showhidetargetvalue="viewMoreArticles">
+                        <items jcr:primaryType="nt:unstructured">
+                            <viewMore
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="View More Button Label"
+                                    name="./viewMoreLabel"/>
+                            <viewMoreLink
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="View More Articles Link"
+                                    name="./viewMoreLink"
+                                    rootPath="/content/websites"/>
+                        </items>
+                    </viewMoreArticles>
+                    <loadMore
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/container"
+                            class="hide dynamic-showhide-target"
+                            showhidetargetvalue="dynamic">
+                    </loadMore>
+                    <offset
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                            fieldLabel="Offset"
+                            min="{Double}0"
+                            name="./offset"/>
+                    <numberOf
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="/libs/granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Number of articles"
+                            fieldDescription="Total of articles loaded by component."
+                            name="./numberOf">
+                        <items jcr:primaryType="nt:unstructured">
+                            <three
+                                    jcr:primaryType="nt:unstructured"
+                                    text="3"
+                                    value="3"/>
+                            <six
+                                    jcr:primaryType="nt:unstructured"
+                                    text="6"
+                                    value="6"/>
+                            <nine
+                                    jcr:primaryType="nt:unstructured"
+                                    text="9"
+                                    value="9"/>
+                            <twelve
+                                    jcr:primaryType="nt:unstructured"
+                                    text="12"
+                                    value="{Long}12"/>
+                        </items>
+                    </numberOf>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>
+

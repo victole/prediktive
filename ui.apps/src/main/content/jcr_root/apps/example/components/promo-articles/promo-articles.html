@@ -1,0 +1,81 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+     data-sly-use.linkHelper="${'com.roche.opengarden.ecosystem.models.LinkModel' @ urlLink=properties.viewMoreLink}"
+     data-sly-test.hasContent="${properties.layout}">
+    <div class="promo-articles-cmp">
+        <div id="promo-articles">
+            <promo-articles
+                    v-bind:initial-offset="${properties.offset ? properties.offset : '0'}"
+                    v-bind:load-size="${properties.numberOf ? properties.numberOf : '3'}"
+                    v-bind:page-size="${properties.numberOf ? properties.numberOf : '3'}"
+                    v-bind:buffer-multiplier="4"
+                    action="${resource.path}"
+                    layout="${properties.layout}"
+                    title="${properties.title}"
+                    view-more="${properties.viewMoreLabel || 'lblCEViewMoreArticles' @ i18n}"
+                    view-more-link="${linkHelper.urlLink}"
+                    edit-mode-class="${wcmmode.edit ? 'warning' : 'hidden'}"
+                    >
+            </promo-articles>
+        </div>
+    </div>
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty=!hasContent, classAppend='cmp-teaser'}"></sly>
+
+<script type="text/x-template" id="promo-articles-vue">
+    <div v-if="numberItemsTotal > 0">
+        <h2 class="mb-4">{{title}}</h2>
+        <div class="row mb-lg-5">
+            <div class="col-12 col-lg-4 mb-4 mb-lg-0" v-for="article in articles">
+                <div class="card-default" >
+                    <div class="image-container">
+                        <a :href="article.link" :data-analytics-link-featuredcontent="article.link">
+                            <img class="card-image" :src="article.thumbnailImage ? article.thumbnailImage.medium : ''" :alt="article.imageAlt">
+                            <div class="bookmark-action ignore" :data-bookmark-path="article.path" :data-bookmark-id="article.bookmarkId" :data-bookmark-resource="resourcePath" v-on:click="fireEvent($event)" :data-analytics-link-bookmark="article.title">
+                                <span class="hidden-text">{{bookmark}} </span> <i class="material-icons s-16">bookmark_border</i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <div class="category-container">
+                            <i v-show="article.video" class="material-icons s-12 va-middle">play_circle_filled</i>
+                            <a v-show="article.video" :href="article.categoryLink" class="card-category s-9 text-royal text-uppercase">
+                                <b>{{videoTag}}</b>
+                            </a>
+                            <a :href="article.categoryLink" :class="[{'bullet-list' : article.video}, article.categoryName]" class="media-category s-9 text-uppercase">
+                                <b>{{article.categoryTitle}}</b>
+                            </a>
+                            <a v-show="article.publication" :href="article.categoryLink" class="card-category s-9 text-primary text-uppercase truncate-helper bullet-list">{{publicationsTag}}</a>
+                        </div>
+                        <a class="card-title" :href="article.link" :data-analytics-link-featuredcontent="article.link">
+                            <h4>{{truncate(article.title,titleMaxSize)}}</h4>
+                        </a>
+                        <p class="card-text s-12">
+                            {{article.cardDate}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center my-5" v-show="layout == 'viewMoreArticles'">
+            <a :href="viewMoreLink" class="btn text-primary"><b>{{viewMore}}</b> <i class="material-icons s-16">arrow_forward</i></a>
+
+        </div>
+
+            <div class="row mb-5" v-show="layout != 'viewMoreArticles'">
+                <div class="progress-bar-container col-lg-3">
+                    <div class="text-center">
+                        <div class="progress progress-post">
+                            <div v-bind:class="progressCompleted" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" :style="getProgressWidth">
+                            </div>
+                        </div>
+                        <br>
+                        <a data-trigger="load-posts" class="btn btn-outline-primary load-posts" v-on:click="loadMore" v-show="!moreBtnDisable">{{loadMoreLabel}}</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div v-else="numberItemsTotal < 1" class="cmp-teaser " :class="editModeClass">
+        <h4 class="mb-2">{{noResults}}</h4>
+        <h4 class="mb-2">{{noResultsMessage}}</h4>
+    </div>
+</script>

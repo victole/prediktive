@@ -1,0 +1,11 @@
+.promo-articles-cmp{
+	.cmp-teaser { 
+		&.warning{
+			background-color: $yellow-light;
+		}
+
+		&.hidden{
+			display: none;
+		}
+	}
+}
